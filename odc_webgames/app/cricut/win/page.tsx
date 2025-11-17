@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import type { JSX } from "react";
 
 export const metadata = {
   title: "You win — Cricut",
