@@ -1,0 +1,62 @@
+:root{
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --accent: #10b981;
+  --danger: #ef4444;
+  --text: #0f172a;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  max-width:900px;
+  margin:32px auto;
+  padding:24px;
+}
+
+.panel{
+  background:var(--card);
+  border-radius:10px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(2,6,23,0.06);
+  margin-bottom:16px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:8px;
+}
+
+button{
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+  cursor:pointer;
+  font-weight:600;
+}
+
+button:active{ transform: translateY(1px); }
+
+.highlight-do {
+  background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(16,185,129,0.06));
+  border: 2px solid rgba(16,185,129,0.18);
+}
+
+.highlight-dont {
+  background: linear-gradient(90deg, rgba(239,68,68,0.12), rgba(239,68,68,0.06));
+  border: 2px solid rgba(239,68,68,0.18);
+}
+
+.foot{
+  margin-top:24px;
+  text-align:center;
+  color: #475569;
+}
