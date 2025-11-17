@@ -39,22 +39,22 @@ export default function CricutPage(): JSX.Element {
         [
             { src: "/cricut-scraper.webp", title: "Scraper", color: "#e0e0e0", pressed: 0, correct: 1 },
             { src: "/cricut-tweezers.webp", title: "Tweezers", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut/tile-3.webp", title: "Scissors", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-3.webp", title: "Screw Driver", color: "#e0e0e0", pressed: 0, correct: 0 },
         ],
         [
-            { src: "/cricut/tile-4.webp", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-5.webp", title: "Weeder", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-6.webp", title: "Spatula", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-4.webp", title: "Scissors", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut/tile-5.webp", title: "Sticker Sheet", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-6.webp", title: "Glue", color: "#e0e0e0", pressed: 0, correct: 0 },
         ],
         [
-            { src: "/cricut/tile-7.webp", title: "Brush", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-8.webp", title: "Scraper 2", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-9.webp", title: "Blade", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-7.webp", title: "Weeding Tool", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut/tile-8.webp", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-9.webp", title: "String", color: "#e0e0e0", pressed: 0, correct: 0 },
         ],
         [
-            { src: "/cricut/tile-10.webp", title: "Mat", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-11.webp", title: "Pen", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-12.webp", title: "Tweezers 2", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-10.webp", title: "Tape", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-11.webp", title: "Ink", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut/tile-12.webp", title: "Pin Hook", color: "#e0e0e0", pressed: 0, correct: 1 },
         ],
     ];
 
