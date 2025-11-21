@@ -16,7 +16,7 @@ export function BoardSpace({
     size = 50,
     icon,
     label,
-    background = "linear-gradient(180deg,#1f2937,#111827)",
+    background = "linear-gradient(180deg,#e2cbf6,#6b21a8)",
     onClick,
 }: BoardSpaceProps): JSX.Element {
     // If `size` is provided -> fixed square. If not -> responsive square (fills parent) using padding-bottom trick.
@@ -42,10 +42,10 @@ export function BoardSpace({
         background,
         borderRadius: 8,
         boxShadow: "0 4px 12px rgba(2,6,23,0.6)",
-        border: "1px solid rgba(255,255,255,0.06)",
         cursor: onClick ? "pointer" : "default",
         userSelect: "none",
         overflow: "hidden",
+        border: "2px solid #ffd6d6" 
     };
 
     const iconWrapperStyle: React.CSSProperties = {
@@ -75,15 +75,15 @@ function EmptyIcon(): JSX.Element {
 function QuestionIcon(): JSX.Element {
     return (
         <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden>
-            <circle cx="12" cy="12" r="10" fill="#1f2937" />
-            <text x="12" y="15" textAnchor="middle" fontSize="12" fill="#f8fafc" fontWeight={700}>?</text>
+            <circle cx="12" cy="12" r="10" fill="#e2cbf6" />
+            <text x="12" y="15" textAnchor="middle" fontSize="12" fill="#000000ff" fontWeight={700}>?</text>
         </svg>
     );
 }
 
 function PlusIcon({ n = 1 }: { n?: number }): JSX.Element {
-    const bg = n > 0 ? "#065f46" : "#7f1d1d";
-    const fg = "#fff";
+    const bg = n > 0 ? "#c0dcb4" : "#e29595";
+    const fg = "#000000ff";
     return (
         <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden>
             <rect x="0" y="0" width="24" height="24" rx="4" fill={bg} />
@@ -238,7 +238,7 @@ export default function XToolS1Page(): JSX.Element {
                 justifyContent: "center",
                 // responsive padding
                 padding: "clamp(12px, 3vw, 32px)",
-                background: "linear-gradient(180deg,#0f172a 0%, #0b1220 100%)",
+                background: "linear-gradient(180deg,#fff 0%, #fff3c2 100%)",
                 color: "#e6eef8",
                 fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
             }}
@@ -251,12 +251,12 @@ export default function XToolS1Page(): JSX.Element {
                     textAlign: "center",
                     borderRadius: 12,
                     padding: "clamp(16px, 4vw, 48px)",
-                    background: "rgba(255,255,255,0.03)",
+                    background: "#c2cdff",
                     boxShadow: "0 6px 30px rgba(2,6,23,0.6)",
                 }}
             >
-                <h1 style={{ margin: 0, fontSize: "clamp(1.25rem, 4vw, 2rem)" }}>xTool S1</h1>
-                <p style={{ marginTop: "0.5rem", color: "#cbe7ff", fontSize: "clamp(0.9rem, 2.4vw, 1rem)" }}>
+                <h1 style={{ margin: 0, fontSize: "clamp(1.25rem, 4vw, 2rem)", color: "#000000ff" }}>xTool S1</h1>
+                <p style={{ marginTop: "0.5rem", color: "#000000ff ", fontSize: "clamp(0.9rem, 2.4vw, 1rem)" }}>
                     This page is a placeholder. The xTool S1 feature is coming soon.
                 </p>
                 {/* BoardGame */}
@@ -266,7 +266,7 @@ export default function XToolS1Page(): JSX.Element {
                         width: "100%",
                         borderRadius: 12,
                         padding: "clamp(8px, 2vw, 24px)",
-                        background: "rgba(255,255,255,0.02)",
+                        background: "#d9f4cd",
                     }}
                 >
                     {/* use the precomputed path variable here instead of an IIFE */}
@@ -317,7 +317,7 @@ export default function XToolS1Page(): JSX.Element {
                                                 background={
 
                                                     questionSpaces.has(idx)
-                                                            ? "linear-gradient(180deg,#1f2937,#0b1220)"
+                                                            ? "linear-gradient(180deg,#e2cbf6,#6b21a8)"
                                                             : undefined
                                                 }
                                             />
@@ -361,8 +361,8 @@ export default function XToolS1Page(): JSX.Element {
                                 padding: "0.6rem 1rem",
                                 borderRadius: 8,
                                 border: "none",
-                                background: "#2563eb",
-                                color: "#fff",
+                                background: "#ffbd59",
+                                color: "#000000ff",
                                 cursor: "pointer",
                                 fontSize: "clamp(0.9rem, 2.2vw, 1rem)",
                             }}
@@ -380,14 +380,14 @@ export default function XToolS1Page(): JSX.Element {
                                 borderRadius: 8,
                                 border: "1px solid rgba(255,255,255,0.06)",
                                 background: "transparent",
-                                color: "#cbe7ff",
+                                color: "#000000ff",
                                 cursor: "pointer",
                             }}
                         >
                             Reset
                         </button>
 
-                        <div aria-live="polite" style={{ color: "#cbe7ff", minWidth: 72, textAlign: "left" }}>
+                        <div aria-live="polite" style={{ color: "#000000ff", minWidth: 72, textAlign: "left" }}>
                             {roll === null ? "—" : `Result: ${roll}`}
                         </div>
                     </div>

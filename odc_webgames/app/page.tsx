@@ -115,7 +115,7 @@ export default function Page(): JSX.Element {
         {/* Row 1: one centered */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: '72%' }}>
-            <Button label="Do's and Don'ts" onClick={() => { router.push('/dos-and-donts') }}>
+            <Button label="Do's and Don'ts" onClick={() => { router.push('/dos-and-donts') }} style={{ background: '#ffd6d6' }}>
               <IconPuzzle />
               <span style={{ fontSize: 16, color: '#111827' }}>Dos and Don'ts</span>
             </Button>
@@ -125,13 +125,13 @@ export default function Page(): JSX.Element {
         {/* Row 2: two side by side */}
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ flex: 1 }}>
-            <Button label="XTool S1" onClick={() => { router.push('/s1') }}>
+            <Button label="XTool S1" onClick={() => { router.push('/s1') }} style={{ background: '#d9f4cd' }}>
               <IconMemory />
               <span style={{ fontSize: 16, color: '#111827' }}>XTool S1</span>
             </Button>
           </div>
           <div style={{ flex: 1 }}>
-            <Button label="3D Printer" onClick={() => { router.push('/3d-printer') }}>
+            <Button label="3D Printer" onClick={() => { router.push('/3d-printer') }} style={{ background: '#fff3c2' }}>
               <IconMath />
               <span style={{ fontSize: 16, color: '#111827' }}>3D Printer</span>
             </Button>
@@ -141,13 +141,13 @@ export default function Page(): JSX.Element {
         {/* Row 3: two side by side */}
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ flex: 1 }}>
-            <Button label="Cricut" onClick={() => { router.push('/cricut') }}>
+            <Button label="Cricut" onClick={() => { router.push('/cricut') }} style={{ background: '#c2cdff' }}>
               <IconWords />
               <span style={{ fontSize: 16, color: '#111827' }}>Cricut</span>
             </Button>
           </div>
           <div style={{ flex: 1 }}>
-            <Button label="Thread it right" onClick={() => { router.push('/sewing') }}>
+            <Button label="Thread it right" onClick={() => { router.push('/sewing') }} style={{ background: '#e2cbf6' }}>
               <IconShapes />
               <span style={{ fontSize: 16, color: '#111827' }}>Thread it right</span>
             </Button>
