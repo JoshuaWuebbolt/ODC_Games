@@ -332,48 +332,56 @@ export default function XToolS1Page(): JSX.Element {
                 {/* Roll Button with movement logic */}
                 <div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                        <button
-                            onClick={() => {
-                                const n = Math.floor(Math.random() * 2) + 1; // 1 or 2
-                                setRoll(n);
-                                const next = playerPos + n;
-                                if (next > lastIndex) {
-                                    // moved past final square -> navigate to win page
-                                    router.push('/s1/win');
-                                    return;
-                                }
-                                if (questionSpaces.has(next)) {
-                                    // defer movement until player answers correctly
-                                    setPendingPos(next);
-                                    const qIdx = Math.floor(Math.random() * questionBank.length);
-                                    setCurrentQuestionIndex(qIdx);
-                                    setSelectedAnswer(null);
-                                    setAnswerFeedback(null);
-                                    setShowQuestion(true);
-                                    return;
-                                }
-                                // otherwise move immediately and apply effects
-                                setPlayerPos(next);
-                                // apply effect after a tick to ensure UI shows the landed square before alert (optional)
-                                setTimeout(() => applySpaceEffect(next), 0);
-                            }}
-                            style={{
-                                padding: "0.6rem 1rem",
-                                borderRadius: 8,
-                                border: "none",
-                                background: "#ffbd59",
-                                color: "#000000ff",
-                                cursor: "pointer",
-                                fontSize: "clamp(0.9rem, 2.2vw, 1rem)",
-                            }}
-                        >
-                            Roll
-                        </button>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                            <button
+                                onClick={() => {
+                                    const n = Math.floor(Math.random() * 2) + 1; // 1 or 2
+                                    setRoll(n);
+                                    const next = playerPos + n;
+                                    if (next > lastIndex) {
+                                        // moved past final square -> navigate to win page
+                                        router.push('/s1/win');
+                                        return;
+                                    }
+                                    if (questionSpaces.has(next)) {
+                                        // defer movement until player answers correctly
+                                        setPendingPos(next);
+                                        const qIdx = Math.floor(Math.random() * questionBank.length);
+                                        setCurrentQuestionIndex(qIdx);
+                                        setSelectedAnswer(null);
+                                        setAnswerFeedback(null);
+                                        setShowQuestion(true);
+                                        return;
+                                    }
+                                    // otherwise move immediately and apply effects
+                                    setPlayerPos(next);
+                                    // apply effect after a tick to ensure UI shows the landed square before alert (optional)
+                                    setTimeout(() => applySpaceEffect(next), 0);
+                                }}
+                                style={{
+                                    padding: "0.6rem 1rem",
+                                    borderRadius: 8,
+                                    border: "none",
+                                    background: "#ffbd59",
+                                    color: "#000000ff",
+                                    cursor: "pointer",
+                                    fontSize: "clamp(0.9rem, 2.2vw, 1rem)",
+                                }}
+                            >
+                                Roll
+                            </button>
+
+                            <div aria-live="polite" style={{ color: "#000000ff", minWidth: 72, textAlign: "left", fontWeight: 600 }}>
+                                {roll === null ? "—" : `Result: ${roll}`}
+                            </div>
+                        </div>
 
                         <button
                             onClick={() => {
-                                setPlayerPos(0);
-                                setRoll(null);
+                                // confirm before navigating home
+                                if (typeof window !== "undefined" && window.confirm("Return to home? Your progress will be lost. Continue?")) {
+                                    router.push("/");
+                                }
                             }}
                             style={{
                                 padding: "0.5rem 0.8rem",
@@ -384,14 +392,10 @@ export default function XToolS1Page(): JSX.Element {
                                 cursor: "pointer",
                             }}
                         >
-                            Reset
+                            Home
                         </button>
-
-                        <div aria-live="polite" style={{ color: "#000000ff", minWidth: 72, textAlign: "left" }}>
-                            {roll === null ? "—" : `Result: ${roll}`}
-                        </div>
-                    </div>
-                </div>
+                     </div>
+                 </div>
             </div>
 
             {/* Insert question modal UI (NEW)
