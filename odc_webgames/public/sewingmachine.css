@@ -1,11 +1,14 @@
 /* CSS Variables */
 :root {
-  --bg: #f7f9fc;
+  --bg: #e2cbf6;
   --card: #fff;
-  --accent: #e07a5f;
+  --accent: #8a63ba;
   --ok: #2ecc71;
   --bad: #ff6b6b;
   --muted: #666;
+  --purple-dark: #6b46a3;
+  --purple-light: #d4b5f0;
+  --purple-pale: #f5f0fa;
 }
 
 /* Base Styles - Mobile First */
@@ -21,6 +24,7 @@ body {
   color: #111;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  min-height: 100vh;
 }
 
 .wrap {
@@ -36,6 +40,11 @@ header {
   gap: 12px;
   margin-bottom: 12px;
   flex-wrap: wrap;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(138, 99, 186, 0.15);
+  border: 2px solid var(--purple-light);
 }
 
 h1 {
@@ -43,11 +52,17 @@ h1 {
   margin: 0;
   flex: 1;
   text-align: center;
+  color: var(--purple-dark);
 }
 
 p.desc {
   margin: 6px 0 14px;
   color: var(--muted);
+  background: var(--card);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(138, 99, 186, 0.1);
+  border: 2px solid var(--purple-light);
 }
 
 /* Game Layout - Mobile First (stacked) */
@@ -62,7 +77,12 @@ p.desc {
   background: var(--card);
   padding: 14px;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+  box-shadow: 0 6px 18px rgba(138, 99, 186, 0.15);
+  border: 2px solid var(--purple-light);
+}
+
+.diagram h3 {
+  color: var(--purple-dark);
 }
 
 .targets {
@@ -74,13 +94,13 @@ p.desc {
 
 .target {
   min-height: 54px;
-  border: 2px dashed #ddd;
+  border: 2px dashed var(--purple-light);
   border-radius: 8px;
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
+  background: var(--purple-pale);
 }
 
 /* Label Bank */
@@ -88,14 +108,19 @@ p.desc {
   background: var(--card);
   padding: 14px;
   border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+  box-shadow: 0 6px 18px rgba(138, 99, 186, 0.15);
+  border: 2px solid var(--purple-light);
+}
+
+.label-bank h3 {
+  color: var(--purple-dark);
 }
 
 .draggable {
   padding: 10px 12px;
-  background: #fff;
+  background: var(--purple-pale);
   border-radius: 8px;
-  border: 1px solid #eee;
+  border: 2px solid var(--purple-light);
   cursor: grab;
   margin-bottom: 8px;
   display: inline-block;
@@ -106,10 +131,16 @@ p.desc {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 .draggable[draggable="true"]:active {
   cursor: grabbing;
+}
+
+.draggable:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(138, 99, 186, 0.2);
 }
 
 /* Controls */
@@ -167,19 +198,20 @@ p.desc {
 .game-2 {
   margin-top: 32px;
   padding-top: 32px;
-  border-top: 2px solid #e0e0e0;
+  border-top: 2px solid var(--purple-light);
 }
 
 .game-2 h2 {
   font-size: 1.25rem;
-  color: #111;
+  color: var(--purple-dark);
 }
 
 .fill-blank-card {
   background: var(--card);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(138, 99, 186, 0.15);
+  border: 2px solid var(--purple-light);
 }
 
 .question {
@@ -220,13 +252,13 @@ p.desc {
 .letter-box {
   width: 36px;
   height: 44px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--purple-light);
   border-radius: 6px;
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
-  background: #fff;
+  background: var(--purple-pale);
   transition: all 200ms ease;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -234,8 +266,8 @@ p.desc {
 
 .letter-box:focus {
   outline: none;
-  border-color: #7b8cff;
-  box-shadow: 0 0 0 3px rgba(123, 140, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(138, 99, 186, 0.2);
 }
 
 .letter-box.correct {
@@ -294,15 +326,15 @@ p.desc {
   /* Desktop hover effects */
   .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(138, 99, 186, 0.3);
   }
 
   .draggable:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(138, 99, 186, 0.2);
   }
 
   .letter-box:hover {
-    border-color: #7b8cff;
+    border-color: var(--accent);
   }
 }

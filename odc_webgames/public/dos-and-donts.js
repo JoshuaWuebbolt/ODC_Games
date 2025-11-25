@@ -10,10 +10,19 @@
   ];
 
   let index = 0, score = 0;
+  const introCard = document.getElementById('introCard');
+  const gameCard = document.getElementById('gameCard');
   const scenarioEl = document.getElementById('scenario');
   const feedbackEl = document.getElementById('feedback');
   const progressEl = document.getElementById('progress');
   const finalEl = document.getElementById('final');
+
+  // Start button handler
+  document.getElementById('startBtn').addEventListener('click', () => {
+    introCard.style.display = 'none';
+    gameCard.style.display = 'block';
+    show();
+  });
 
   function show(){
     if(index >= items.length){

@@ -10,10 +10,34 @@
   <div class="wrap">
     <header>
       <h1>Maker Manners — The Etiquette Challenge</h1>
-      <a href="/" style="text-decoration:none;color:#555;">Back</a>
+      <a href="/" class="back-link">Back</a>
     </header>
 
-    <div class="card">
+    <!-- Introduction Screen -->
+    <div class="card" id="introCard">
+      <div class="intro-section">
+        <h2 class="intro-title">Welcome to Maker Manners! 🎯</h2>
+        <p class="intro-text">
+          Test your knowledge of makerspace etiquette! In this challenge, you'll be presented with
+          different scenarios that might happen in a makerspace. Your job is to decide whether each
+          behavior is <strong>Polite</strong> or <strong>Rude</strong>.
+        </p>
+        <div class="instructions-box">
+          <h3 class="instructions-title">How to Play:</h3>
+          <ul class="instructions-list">
+            <li>Read each scenario carefully</li>
+            <li>Click "Polite ✅" if the behavior is appropriate</li>
+            <li>Click "Rude ❌" if the behavior is inappropriate</li>
+            <li>You'll get instant feedback with an explanation</li>
+            <li>Complete all 7 scenarios to see your final score!</li>
+          </ul>
+        </div>
+        <button id="startBtn" class="btn start-btn">Start Challenge 🚀</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div class="card" id="gameCard" style="display:none">
       <div id="scenario" class="scenario"></div>
       <div class="buttons">
         <button id="btnPolite" class="btn ok">Polite ✅</button>
