@@ -1,4 +1,5 @@
 import React from "react";
+import type { JSX } from "react";
 
 export const metadata = {
   title: "Do's and Don'ts",
