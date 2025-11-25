@@ -1,62 +1,91 @@
-:root{
-  --bg: #f7fafc;
-  --card: #ffffff;
-  --accent: #10b981;
-  --danger: #ef4444;
-  --text: #0f172a;
+:root {
+  --bg: #fffaf0;
+  --card: #fff;
+  --accent: #4aa96c;
+  --wrong: #ff5c5c;
+  --muted: #666;
 }
 
-html,body{
-  height:100%;
-  margin:0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--bg);
-  color:var(--text);
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 18px;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.container{
-  max-width:900px;
-  margin:32px auto;
-  padding:24px;
+.wrap {
+  max-width: 760px;
+  width: 100%;
 }
 
-.panel{
-  background:var(--card);
-  border-radius:10px;
-  padding:16px;
-  box-shadow:0 6px 18px rgba(2,6,23,0.06);
-  margin-bottom:16px;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.actions{
-  display:flex;
-  gap:12px;
-  margin-top:8px;
+h1 {
+  margin: 0;
+  font-size: 1.25rem;
 }
 
-button{
-  padding:10px 14px;
-  border-radius:8px;
-  border:1px solid rgba(0,0,0,0.08);
-  background:#fff;
-  cursor:pointer;
-  font-weight:600;
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
 }
 
-button:active{ transform: translateY(1px); }
-
-.highlight-do {
-  background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(16,185,129,0.06));
-  border: 2px solid rgba(16,185,129,0.18);
+.scenario {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
 }
 
-.highlight-dont {
-  background: linear-gradient(90deg, rgba(239,68,68,0.12), rgba(239,68,68,0.06));
-  border: 2px solid rgba(239,68,68,0.18);
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.foot{
-  margin-top:24px;
-  text-align:center;
-  color: #475569;
+.btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 0;
+  background: #eee;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn.ok {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.wrong {
+  background: var(--wrong);
+  color: #fff;
+}
+
+.feedback {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.progress {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.result {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f0f8ff;
+  color: #023047;
 }
