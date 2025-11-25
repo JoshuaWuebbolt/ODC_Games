@@ -1,0 +1,308 @@
+/* CSS Variables */
+:root {
+  --bg: #f7f9fc;
+  --card: #fff;
+  --accent: #e07a5f;
+  --ok: #2ecc71;
+  --bad: #ff6b6b;
+  --muted: #666;
+}
+
+/* Base Styles - Mobile First */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 12px;
+  color: #111;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Header - Mobile First */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-size: 1.15rem;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+p.desc {
+  margin: 6px 0 14px;
+  color: var(--muted);
+}
+
+/* Game Layout - Mobile First (stacked) */
+.game {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Diagram Section */
+.diagram {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+}
+
+.targets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.target {
+  min-height: 54px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+
+/* Label Bank */
+.label-bank {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+}
+
+.draggable {
+  padding: 10px 12px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  cursor: grab;
+  margin-bottom: 8px;
+  display: inline-block;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.draggable[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+/* Controls */
+.controls {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-home {
+  order: -1;
+}
+
+/* Feedback and Hints */
+.hint {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.feedback {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.small {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Game 2: Fill in the Blank */
+.game-2 {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.game-2 h2 {
+  font-size: 1.25rem;
+  color: #111;
+}
+
+.fill-blank-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.question {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 8px 0;
+}
+
+.question-hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 16px 0;
+  cursor: help;
+  display: inline-block;
+}
+
+.blank-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.blank-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.letter-boxes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.letter-box {
+  width: 36px;
+  height: 44px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #fff;
+  transition: all 200ms ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.letter-box:focus {
+  outline: none;
+  border-color: #7b8cff;
+  box-shadow: 0 0 0 3px rgba(123, 140, 255, 0.2);
+}
+
+.letter-box.correct {
+  border-color: var(--ok);
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--ok);
+}
+
+.letter-box.wrong {
+  border-color: var(--bad);
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--bad);
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Responsive Design - Tablet and Desktop */
+@media (min-width: 600px) {
+  body {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .target {
+    min-height: 60px;
+  }
+
+  .letter-box {
+    width: 42px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .game-2 h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 820px) {
+  .game {
+    grid-template-columns: 1fr 320px;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  /* Desktop hover effects */
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .draggable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .letter-box:hover {
+    border-color: #7b8cff;
+  }
+}

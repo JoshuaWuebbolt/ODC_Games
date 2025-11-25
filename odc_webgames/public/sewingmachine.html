@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WallPlay: Thread It Right! - Sewing Machine Game</title>
+  <link rel="stylesheet" type="text/css" href="/sewingmachine.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="index.html" class="btn btn-home" style="background:#7b8cff">🏠 Home</a>
+      <h1>Thread It Right!</h1>
+    </header>
+    <p class="desc">Drag the labels to the correct part of the sewing machine. Designed to be quick — takes ~1 minute.</p>
+
+    <!-- Game 1: Drag and Drop -->
+    <div class="game">
+      <!-- Left: Diagram and targets -->
+      <div class="diagram" id="diagram">
+        <h3 style="margin:0">Machine Overview</h3>
+        <p class="small">Drop the correct label into each target. Tap and hold to drag on mobile.</p>
+
+        <!-- simple layout: labels corresponding to parts -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+          <div style="flex:1;min-width:220px">
+            <div class="target" data-accept="spool" id="t-spool">Which part holds the thread that comes from the top?</div>
+            <div class="target" data-accept="bobbin" id="t-bobbin" style="margin-top:8px">Which part feeds the thread from below?</div>
+          </div>
+          <div style="flex:1;min-width:220px">
+            <div class="target" data-accept="presser" id="t-presser">What holds the fabric flat under the needle?</div>
+            <div class="target" data-accept="feeddogs" id="t-feeddogs" style="margin-top:8px">What part moves the fabric through as you sew?</div>
+          </div>
+        </div>
+
+        <div class="targets" style="margin-top:14px">
+          <div class="target" data-accept="pedal" id="t-pedal" style="grid-column:'1/1'">Which part controls the sewing speed?</div>
+        </div>
+
+        <div id="result" class="feedback" aria-live="polite"></div>
+      </div>
+
+      <!-- Right: Label bank -->
+      <div class="label-bank">
+        <h3 style="margin:0 0 8px 0">Parts</h3>
+        <div id="bank">
+          <div class="draggable" draggable="true" data-key="spool">Spool Pin</div>
+          <div class="draggable" draggable="true" data-key="bobbin">Bobbin Case</div>
+          <div class="draggable" draggable="true" data-key="presser">Presser Foot</div>
+          <div class="draggable" draggable="true" data-key="feeddogs">Feed Dogs</div>
+          <div class="draggable" draggable="true" data-key="pedal">Foot Pedal</div>
+        </div>
+
+        <div class="controls">
+          <button id="checkBtn" class="btn">Check Answers</button>
+          <button id="resetBtn" class="btn" style="background:#9aa3b8">Reset</button>
+        </div>
+
+        <p class="hint">Tip: On mobile, tap and hold a label to start dragging. You can also drag labels back to the bank.</p>
+      </div>
+    </div>
+
+    <!-- Game 2: Fill in the Blank -->
+    <div class="game-2">
+      <h2 style="margin:0 0 12px 0">Fill in the Blank</h2>
+      <div class="fill-blank-card">
+        <p class="question">Who is Mr. Hudson?</p>
+        <p class="question-hint" title="Hint: a sewing equipment shaped like a human">💡 Hint: a sewing equipment shaped like a human</p>
+
+        <div class="blank-container">
+          <span class="blank-text">The</span>
+          <div class="letter-boxes" id="letterBoxes">
+            <input type="text" class="letter-box" maxlength="1" data-index="0" aria-label="Letter 1">
+            <input type="text" class="letter-box" maxlength="1" data-index="1" aria-label="Letter 2">
+            <input type="text" class="letter-box" maxlength="1" data-index="2" aria-label="Letter 3">
+            <input type="text" class="letter-box" maxlength="1" data-index="3" aria-label="Letter 4">
+            <input type="text" class="letter-box" maxlength="1" data-index="4" aria-label="Letter 5">
+            <input type="text" class="letter-box" maxlength="1" data-index="6" aria-label="Letter 6">
+            <input type="text" class="letter-box" maxlength="1" data-index="7" aria-label="Letter 7">
+            <input type="text" class="letter-box" maxlength="1" data-index="8" aria-label="Letter 8">
+            <input type="text" class="letter-box" maxlength="1" data-index="9" aria-label="Letter 9">
+          </div>
+        </div>
+
+        <div class="controls" style="margin-top:16px">
+          <button id="checkBlankBtn" class="btn">Check Answer</button>
+          <button id="resetBlankBtn" class="btn" style="background:#9aa3b8">Clear</button>
+        </div>
+
+        <div id="blankResult" class="feedback" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/sewingmachine.js"></script>
+</body>
+</html>

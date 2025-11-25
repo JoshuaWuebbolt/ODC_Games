@@ -2,42 +2,23 @@ import React from "react";
 import type { JSX } from "react";
 
 export const metadata = {
-    title: "Thread it right — Placeholder",
-    description: "Placeholder page for the Sewing Machine section of the site",
+  title: "Sewing Machine - Thread it Right",
+  description: "Guidelines and tips (static HTML)",
 };
 
-export default function SewingPage(): JSX.Element {
-    return (
-        <main
-            style={{
-                minHeight: "100vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "2rem",
-                background: "linear-gradient(180deg,#0f172a 0%, #0b1220 100%)",
-                color: "#e6eef8",
-                fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
-            }}
-        >
-            <div
-                style={{
-                    maxWidth: 720,
-                    textAlign: "center",
-                    borderRadius: 12,
-                    padding: "3rem",
-                    background: "rgba(255,255,255,0.03)",
-                    boxShadow: "0 6px 30px rgba(2,6,23,0.6)",
-                }}
-            >
-                <h1 style={{ margin: 0, fontSize: "2rem" }}>Thread it right</h1>
-                <p style={{ marginTop: "0.5rem", color: "#cbe7ff" }}>
-                    This page is a placeholder. The Sewing Machine feature is coming soon.
-                </p>
-                <p style={{ marginTop: "1.25rem", fontSize: "0.9rem", color: "#9fb9d9" }}>
-                    Path: /s1
-                </p>
-            </div>
-        </main>
-    );
+export default function Page(): JSX.Element {
+  return (
+    <main style={{ height: "100vh", margin: 0 }}>
+      {/* Embed the static HTML from /dos-and-donts.html (public folder) */}
+      <iframe
+        src="/sewingmachine.html"
+        title="Sewing Machine - Thread it Right"
+        style={{ border: 0, width: "100%", height: "100%" }}
+      />
+      {/* Fallback link for clients without iframe support */}
+      <div style={{ display: "none" }}>
+        <a href="/sewingmachine.html">Open Sewing Machine</a>
+      </div>
+    </main>
+  );
 }
