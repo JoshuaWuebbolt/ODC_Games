@@ -134,10 +134,14 @@ export default function XToolS1Page(): JSX.Element {
 
     // --- question bank + modal state (NEW) ---
     const questionBank: { q: string; options: string[]; answer: number }[] = [
-        { q: "What color is the sky on a clear day?", options: ["Green", "Blue", "Red"], answer: 1 },
-        { q: "How many wheels does a tricycle have?", options: ["2", "3", "4"], answer: 1 },
-        { q: "Which tool cuts paper precisely?", options: ["Hammer", "Weeder", "Scissors"], answer: 2 },
-        { q: "What's the safe posture when using tools?", options: ["Lean over", "Keep steady and use both hands", "Run while holding"], answer: 1 }
+        { q: "What type of machine is the xTool S1?", options: ["Sewing machine", "Laser cutting and engraving machine", "3D printer"], answer: 1 },
+        { q: "What is one major safety feature of the xTool S1?", options: ["Automatic water cooling", "Fully enclosed lid with safety sensors", "Built-in vacuum for cleaning"], answer: 1 },
+        { q: "Which materials can the xTool S1 typically cut or engrave?", options: ["Wood, acrylic, leather", "Metal only", "Food items"], answer: 0 },
+        { q: "The xTool S1 uses what type of laser?", options: ["CO₂ laser", "Diode laser", "UV cure laser"], answer: 1 },
+        { q: "What software is commonly used to design files for the xTool S1?", options: ["Microsoft Word", "xTool Creative Space (XCS)", "PowerPoint"], answer: 1 },
+        { q: "Before cutting material, what should the user always check?", options: ["If the material smells nice", "If the laser is charged", "If the material is safe and compatible"], answer: 2 },
+        { q: "What is the purpose of the honeycomb panel accessory?", options: ["To store tools", "To improve ventilation and cutting quality", "To make the surface softer"], answer: 1 },
+        { q: "Why is focusing the laser important?", options: ["It makes the machine run faster", "It prevents the lid from closing", "It ensures clean and accurate cuts"], answer: 2 },
     ];
 
     const [showQuestion, setShowQuestion] = React.useState(false);

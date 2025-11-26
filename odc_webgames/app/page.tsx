@@ -124,7 +124,7 @@ export default function Page(): JSX.Element {
           <div style={{ flex: 1 }}>
             <Button label="XTool S1" onClick={() => { router.push('/s1') }} style={{ background: '#d9f4cd' }}>
               <IconMemory />
-              <span style={{ fontSize: 16, color: '#111827' }}>XTool S1</span>
+              <span style={{ fontSize: 16, color: '#111827' }}>Lazer Cutter</span>
             </Button>
           </div>
           <div style={{ flex: 1 }}>
