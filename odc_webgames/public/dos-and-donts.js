@@ -1,32 +1,73 @@
-(function () {
-  const highlightDoBtn = document.getElementById("highlight-do");
-  const highlightDontBtn = document.getElementById("highlight-dont");
-  const resetBtn = document.getElementById("reset");
-  const doList = document.getElementById("do-list");
-  const dontList = document.getElementById("dont-list");
+(() => {
+  const items = [
+    {text:"Jordan unwraps a bag of chips while waiting and leaves crumbs by the 3D printer.", correct:"rude", explain:"Food near machines can cause damage and attract pests."},
+    {text:"Alex opens the laser cutter mid-job to see how it works.", correct:"rude", explain:"Never access running machines — it risks damage or injury."},
+    {text:"Casey cleans and returns scissors and thread to the labeled drawers after use.", correct:"polite", explain:"Tidy workspaces help everyone."},
+    {text:"Jamie moves a 3D printer to another table without permission.", correct:"rude", explain:"Machines are calibrated and should not be moved."},
+    {text:"Taylor checks that the sewing machine is threaded correctly and marked 'Ready' before use.", correct:"polite", explain:"Always check status before operating a machine."},
+    {text:"Riley throws cardboard into a bin labeled 'Plastic Only'.", correct:"rude", explain:"Sort materials correctly to keep the space clean and recyclable."},
+    {text:"Morgan reports a faulty laser cutter to staff instead of using it.", correct:"polite", explain:"Reporting problems helps maintain safe equipment."}
+  ];
 
-  function clearHighlights() {
-    doList.classList.remove("highlight-do");
-    dontList.classList.remove("highlight-dont");
-    // also remove classes from individual items
-    Array.from(doList.children).forEach(li => li.classList.remove("highlight-do"));
-    Array.from(dontList.children).forEach(li => li.classList.remove("highlight-dont"));
+  let index = 0, score = 0;
+  const introCard = document.getElementById('introCard');
+  const gameCard = document.getElementById('gameCard');
+  const scenarioEl = document.getElementById('scenario');
+  const feedbackEl = document.getElementById('feedback');
+  const progressEl = document.getElementById('progress');
+  const finalEl = document.getElementById('final');
+
+  // Start button handler
+  document.getElementById('startBtn').addEventListener('click', () => {
+    introCard.style.display = 'none';
+    gameCard.style.display = 'block';
+    show();
+  });
+
+  function show(){
+    if(index >= items.length){
+      finish();
+      return;
+    }
+    const it = items[index];
+    scenarioEl.textContent = it.text;
+    feedbackEl.textContent = '';
+    progressEl.textContent = `Scenario ${index+1} of ${items.length}`;
   }
 
-  highlightDoBtn.addEventListener("click", () => {
-    clearHighlights();
-    // apply class to list and items
-    doList.classList.add("highlight-do");
-    Array.from(doList.children).forEach(li => li.classList.add("highlight-do"));
-  });
+  document.getElementById('btnPolite').addEventListener('click', () => answer('polite'));
+  document.getElementById('btnRude').addEventListener('click', () => answer('rude'));
 
-  highlightDontBtn.addEventListener("click", () => {
-    clearHighlights();
-    dontList.classList.add("highlight-dont");
-    Array.from(dontList.children).forEach(li => li.classList.add("highlight-dont"));
-  });
+  function answer(choice){
+    const it = items[index];
+    const correct = it.correct;
+    if(choice === correct){
+      score++;
+      feedbackEl.textContent = 'Correct — ' + it.explain;
+      feedbackEl.style.color = 'var(--accent)';
+    } else {
+      feedbackEl.textContent = 'Not quite — ' + it.explain;
+      feedbackEl.style.color = 'var(--wrong)';
+    }
+    index++;
+    setTimeout(show, 1100);
+  }
 
-  resetBtn.addEventListener("click", () => {
-    clearHighlights();
-  });
+  function finish(){
+    scenarioEl.textContent = 'All done!';
+    progressEl.textContent = '';
+    document.querySelector('.buttons').style.display = 'none';
+    feedbackEl.style.display = 'none';
+    finalEl.style.display = 'block';
+    const percent = Math.round((score/items.length)*100);
+    let badge = '';
+    if(percent === 100) badge = '✨ Etiquette Expert ✨';
+    else if(percent >= 70) badge = '👍 Polite Producer';
+    else badge = '🙂 Maker-in-Training';
+    finalEl.innerHTML = `<strong>Score: ${score} / ${items.length} (${percent}%)</strong><br>${badge}<br><small style="color:var(--muted)">Tip: scan the poster QR codes for quick reminders of Maker Manners.</small>`;
+  }
+
+  // initialise
+  show();
+
 })();

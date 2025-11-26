@@ -1,44 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Do's and Don'ts</title>
-    <link rel="stylesheet" href="/dos-and-donts.css" />
-  </head>
-  <body>
-    <main class="container">
-      <h1>Do's and Don'ts</h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maker Manners — Do or Don't</title>
+  <link rel="stylesheet" href="/dos-and-donts.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Maker Manners — The Etiquette Challenge</h1>
+      <a href="/" class="back-link">Back</a>
+    </header>
 
-      <section class="panel">
-        <h2>Do</h2>
-        <ul id="do-list">
-          <li>Keep materials clean</li>
-          <li>Follow the safety guidelines</li>
-          <li>Use recommended settings</li>
-        </ul>
-      </section>
-
-      <section class="panel">
-        <h2>Don't</h2>
-        <ul id="dont-list">
-          <li>Force the machine</li>
-          <li>Use incompatible materials</li>
-          <li>Leave the device unattended while running</li>
-        </ul>
-      </section>
-
-      <div class="actions">
-        <button id="highlight-do">Highlight Do's</button>
-        <button id="highlight-dont">Highlight Don'ts</button>
-        <button id="reset">Reset</button>
+    <!-- Introduction Screen -->
+    <div class="card" id="introCard">
+      <div class="intro-section">
+        <h2 class="intro-title">Welcome to Maker Manners! 🎯</h2>
+        <p class="intro-text">
+          Test your knowledge of makerspace etiquette! In this challenge, you'll be presented with
+          different scenarios that might happen in a makerspace. Your job is to decide whether each
+          behavior is <strong>Polite</strong> or <strong>Rude</strong>.
+        </p>
+        <div class="instructions-box">
+          <h3 class="instructions-title">How to Play:</h3>
+          <ul class="instructions-list">
+            <li>Read each scenario carefully</li>
+            <li>Click "Polite ✅" if the behavior is appropriate</li>
+            <li>Click "Rude ❌" if the behavior is inappropriate</li>
+            <li>You'll get instant feedback with an explanation</li>
+            <li>Complete all 7 scenarios to see your final score!</li>
+          </ul>
+        </div>
+        <button id="startBtn" class="btn start-btn">Start Challenge 🚀</button>
       </div>
+    </div>
 
-      <footer class="foot">
-        <p><a href="/">Return to app</a></p>
-      </footer>
-    </main>
+    <!-- Game Screen -->
+    <div class="card" id="gameCard" style="display:none">
+      <div id="scenario" class="scenario"></div>
+      <div class="buttons">
+        <button id="btnPolite" class="btn ok">Polite ✅</button>
+        <button id="btnRude" class="btn wrong">Rude ❌</button>
+      </div>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+      <div class="progress" id="progress"></div>
+      <div id="final" class="result" style="display:none"></div>
+    </div>
+  </div>
 
-    <script src="/dos-and-donts.js"></script>
-  </body>
+  <script src="/dos-and-donts.js"></script>
+</body>
 </html>
