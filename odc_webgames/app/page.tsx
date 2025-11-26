@@ -100,8 +100,20 @@ export default function Page(): JSX.Element {
           color: '#0f172a',
         }}
       >
-        Pick a game to start learning!
+        WallPlay: Learn While You Wait
       </h1>
+
+      <p
+        style={{
+          margin: 0,
+          marginBottom: 18,
+          textAlign: 'center',
+          fontSize: 14,
+          color: '#6b7280',
+        }}
+      >
+        Pick a game to start learning
+      </p>
 
       <div
         style={{
