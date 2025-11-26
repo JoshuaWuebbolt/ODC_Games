@@ -90,30 +90,15 @@ export default function Page(): JSX.Element {
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial',
       }}
     >
-      <h1
-        style={{
-          margin: 0,
-          marginBottom: 18,
-          textAlign: 'center',
-          fontSize: 20,
-          fontWeight: 600,
-          color: '#0f172a',
-        }}
-      >
-        WallPlay: Learn While You Wait
-      </h1>
-
-      <p
-        style={{
-          margin: 0,
-          marginBottom: 18,
-          textAlign: 'center',
-          fontSize: 14,
-          color: '#6b7280',
-        }}
-      >
-        Pick a game to start learning
-      </p>
+      {/* header: title + subtitle */}
+      <header style={{ textAlign: 'center', marginBottom: 18 }}>
+        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: '#0f172a' }}>
+          WallPlay: Learn While You Wait
+        </h1>
+        <p style={{ margin: '8px 0 0', fontSize: 14, color: '#6b7280' }}>
+          Pick a game to start learning
+        </p>
+      </header>
 
       <div
         style={{
