@@ -71,10 +71,37 @@
       window.dispatchEvent(new CustomEvent('dosGameOver', { detail: { score } }));
     } catch (e) { /* ignore */ }
 
+    // remove any previous retry button
+    const prevRetry = document.getElementById('retryBtn');
+    if (prevRetry) prevRetry.remove();
+
     // redirect to the win page on a perfect score (give a short delay so the user sees the message)
     if (score === items.length) {
       setTimeout(() => { window.location.href = 'dos-and-donts/win'; }, 900);
+      return;
     }
+
+    // non-perfect: show a "Try Again" button to restart the challenge
+    const retryBtn = document.createElement('button');
+    retryBtn.id = 'retryBtn';
+    retryBtn.className = 'btn start-btn';
+    retryBtn.textContent = 'Try Again ↺';
+    retryBtn.type = 'button';
+    retryBtn.style.marginTop = '12px';
+    finalEl.appendChild(retryBtn);
+
+    retryBtn.addEventListener('click', () => {
+      // reset state
+      index = 0;
+      score = 0;
+      // restore UI
+      finalEl.style.display = 'none';
+      feedbackEl.style.display = ''; // restore feedback visibility
+      const buttons = document.querySelector('.buttons');
+      if (buttons) buttons.style.display = ''; // show choice buttons
+      // restart
+      show();
+    });
   }
 
   // initialise
