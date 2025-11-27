@@ -60,6 +60,7 @@
     result.textContent = `You got ${correct} of ${targets.length} correct.`;
     if(correct === targets.length){
       result.innerHTML += ' <span style="color:var(--ok)">Great! You are a Sewing Star!</span>';
+      winCondition();
     } else {
       result.innerHTML += ' Try swapping labels and check again.';
     }
@@ -156,6 +157,7 @@
       blankResult.textContent = '🎉 Correct! Mr. Hudson is the Mannequin!';
       blankResult.style.color = 'var(--ok)';
       checkBlankBtn.disabled = true;
+      winCondition();
     } else {
       letterBoxes.forEach((box, index) => {
         box.classList.remove('correct');
@@ -181,5 +183,15 @@
     checkBlankBtn.disabled = false;
     letterBoxes[0].focus();
   });
+  // Periodically check for win condition
+  function winCondition() {
+    const starAchieved = result && (result.innerHTML || '').includes('Great! You are a Sewing Star!');
+    const blankAchieved = blankResult && (blankResult.innerHTML || '').includes('🎉 Correct! Mr. Hudson is the Mannequin!');
+    if (starAchieved && blankAchieved) {
+      localStorage.setItem("doneSewing", "true");
+      window.alert("You have completed the Thread it Right game!");
+      window.location.href = "/sewing/win";
+    }
+  }
 
 })();

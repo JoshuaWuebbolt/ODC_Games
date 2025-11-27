@@ -65,6 +65,16 @@
     else if(percent >= 70) badge = '👍 Polite Producer';
     else badge = '🙂 Maker-in-Training';
     finalEl.innerHTML = `<strong>Score: ${score} / ${items.length} (${percent}%)</strong><br>${badge}<br><small style="color:var(--muted)">Tip: scan the poster QR codes for quick reminders of Maker Manners.</small>`;
+
+    // emit a custom event so external scripts can react
+    try {
+      window.dispatchEvent(new CustomEvent('dosGameOver', { detail: { score } }));
+    } catch (e) { /* ignore */ }
+
+    // redirect to the win page on a perfect score (give a short delay so the user sees the message)
+    if (score === items.length) {
+      setTimeout(() => { window.location.href = 'dos-and-donts/win'; }, 900);
+    }
   }
 
   // initialise

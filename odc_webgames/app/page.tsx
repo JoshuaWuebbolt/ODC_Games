@@ -4,11 +4,18 @@ import type { JSX } from 'react'
 import { useRouter } from 'next/navigation'
 
 // Comment and uncomment for testing purposes
+
 // localStorage.setItem("doneDosDonts", "true");
 // localStorage.setItem("doneS1", "true");
 // localStorage.setItem("done3DPrinter", "true");
 // localStorage.setItem("doneCricut", "true");
 // localStorage.setItem("doneSewing", "true");
+
+// localStorage.setItem("doneDosDonts", "false");
+// localStorage.setItem("doneS1", "false");
+// localStorage.setItem("done3DPrinter", "false");
+// localStorage.setItem("doneCricut", "false");
+// localStorage.setItem("doneSewing", "false");
 
 const Button: React.FC<{ label: string; onClick: () => void; children: React.ReactNode; style?: React.CSSProperties; checked?: boolean }> = ({ label, onClick, children, style, checked }) => (
   <button
