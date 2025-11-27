@@ -241,6 +241,7 @@ export default function Page() {
                     "linear-gradient(180deg, rgba(245,247,250,1) 0%, rgba(235,243,250,1) 100%)",
                 display: "flex",
                 flexDirection: "column",
+                border: "5px solid #ffbd59",
             }}
         >
             <header style={{ marginBottom: 12 }}>

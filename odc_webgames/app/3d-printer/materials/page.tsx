@@ -231,6 +231,7 @@ export default function Page() {
                 minHeight: '100vh',
                 boxSizing: 'border-box',
                 fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial',
+                border: '5px solid #ffbd59',
             }}
         >
             <h1 style={{ margin: 0 }}>3D Printer Materials Matching</h1>

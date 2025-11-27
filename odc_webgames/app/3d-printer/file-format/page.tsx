@@ -92,6 +92,7 @@ const styles: { [k: string]: React.CSSProperties } = {
         fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial",
         color: "#111",
         width: "min(96vw, 100%)",
+        border: "5px solid #ffbd59",
     },
     header: {
         marginBottom: 20,
