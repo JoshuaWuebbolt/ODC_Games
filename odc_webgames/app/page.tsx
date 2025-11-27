@@ -3,13 +3,18 @@ import React from 'react'
 import type { JSX } from 'react'
 import { useRouter } from 'next/navigation'
 
-// app/page.tsx
+localStorage.setItem("doneDosDonts", "true");
+localStorage.setItem("doneS1", "true");
+localStorage.setItem("done3DPrinter", "true");
+localStorage.setItem("doneCricut", "true");
+localStorage.setItem("doneSewing", "true");
 
-const Button: React.FC<{ label: string; onClick: () => void; children: React.ReactNode; style?: React.CSSProperties }> = ({ label, onClick, children, style }) => (
+const Button: React.FC<{ label: string; onClick: () => void; children: React.ReactNode; style?: React.CSSProperties; checked?: boolean }> = ({ label, onClick, children, style, checked }) => (
   <button
     onClick={onClick}
     aria-label={label}
     style={{
+      position: 'relative', // allow badge placement
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -26,6 +31,24 @@ const Button: React.FC<{ label: string; onClick: () => void; children: React.Rea
       ...style,
     }}
   >
+    {/* green check badge when completed */}
+    {checked && (
+      <span style={{
+        position: 'absolute',
+        top: 8,
+        right: 8,
+        width: 22,
+        height: 22,
+        borderRadius: 12,
+        background: '#10b981',
+        color: '#fff',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 14,
+        lineHeight: 1,
+      }}>✓</span>
+    )}
     {children}
   </button>
 )
@@ -72,6 +95,26 @@ const IconShapes = () => (
 
 export default function Page(): JSX.Element {
   const router = useRouter()
+  // progress flags read from localStorage (client-side)
+  const [doneDos, setDoneDos] = React.useState(false)
+  const [doneS1, setDoneS1] = React.useState(false)
+  const [donePrinter, setDonePrinter] = React.useState(false)
+  const [doneCricut, setDoneCricut] = React.useState(false)
+  const [doneSewing, setDoneSewing] = React.useState(false)
+
+  React.useEffect(() => {
+    try {
+      // read the exact "done..." keys as requested
+      setDoneDos(localStorage.getItem('doneDosDonts') === 'true')
+      setDoneS1(localStorage.getItem('doneS1') === 'true')
+      setDonePrinter(localStorage.getItem('done3DPrinter') === 'true')
+      setDoneCricut(localStorage.getItem('doneCricut') === 'true')
+      setDoneSewing(localStorage.getItem('doneSewing') === 'true')
+    } catch (e) {
+      // ignore (localStorage may be unavailable)
+    }
+  }, [])
+
   const handleClick = (game: string) => {
     console.log('Selected game:', game)
     // navigate or open the selected game here
@@ -112,7 +155,7 @@ export default function Page(): JSX.Element {
         {/* Row 1: one centered */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: '72%' }}>
-            <Button label="Do's and Don'ts" onClick={() => { router.push('/dos-and-donts') }} style={{ background: '#ffd6d6' }}>
+            <Button checked={doneDos} label="Do's and Don'ts" onClick={() => { router.push('/dos-and-donts') }} style={{ background: '#ffd6d6' }}>
               <IconPuzzle />
               <span style={{ fontSize: 16, color: '#111827' }}>Dos and Don'ts</span>
             </Button>
@@ -122,13 +165,13 @@ export default function Page(): JSX.Element {
         {/* Row 2: two side by side */}
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ flex: 1 }}>
-            <Button label="XTool S1" onClick={() => { router.push('/s1') }} style={{ background: '#d9f4cd' }}>
+            <Button checked={doneS1} label="XTool S1" onClick={() => { router.push('/s1') }} style={{ background: '#d9f4cd' }}>
               <IconMemory />
               <span style={{ fontSize: 16, color: '#111827' }}>Lazer Cutter</span>
             </Button>
           </div>
           <div style={{ flex: 1 }}>
-            <Button label="3D Printer" onClick={() => { router.push('/3d-printer/file-format') }} style={{ background: '#fff3c2' }}>
+            <Button checked={donePrinter} label="3D Printer" onClick={() => { router.push('/3d-printer/file-format') }} style={{ background: '#fff3c2' }}>
               <IconMath />
               <span style={{ fontSize: 16, color: '#111827' }}>3D Printer</span>
             </Button>
@@ -138,19 +181,42 @@ export default function Page(): JSX.Element {
         {/* Row 3: two side by side */}
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ flex: 1 }}>
-            <Button label="Cricut" onClick={() => { router.push('/cricut') }} style={{ background: '#c2cdff' }}>
+            <Button checked={doneCricut} label="Cricut" onClick={() => { router.push('/cricut') }} style={{ background: '#c2cdff' }}>
               <IconWords />
               <span style={{ fontSize: 16, color: '#111827' }}>Cricut</span>
             </Button>
           </div>
           <div style={{ flex: 1 }}>
-            <Button label="Thread it right" onClick={() => { router.push('/sewing') }} style={{ background: '#e2cbf6' }}>
+            <Button checked={doneSewing} label="Thread it right" onClick={() => { router.push('/sewing') }} style={{ background: '#e2cbf6' }}>
               <IconShapes />
               <span style={{ fontSize: 16, color: '#111827' }}>Thread it right</span>
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Instruction shown when all five 'done...' localStorage flags are true */}
+      {doneDos && doneS1 && donePrinter && doneCricut && doneSewing && (
+        <div
+          style={{
+            marginTop: 16,
+            maxWidth: 420,
+            width: "100%",
+            background: "#fffef6",
+            border: "2px solid #ffbd59",
+            padding: 12,
+            borderRadius: 10,
+            textAlign: "center",
+            color: "#052735",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Find the ODC Games trophy</div>
+          <div>
+            Ask the ODC manager where the ODC games trophy is, then scan the NFC chip on the bottom of the trophy with your phone.
+          </div>
+        </div>
+      )}
     </main>
   )
 }
