@@ -188,8 +188,8 @@ export default function Page() {
         if (correctCount === materials.length) {
             // congrats then redirect
             setTimeout(() => {
-                alert('Congratulations! All answers are correct. You will be redirected.')
-                router.push('/3d-printer/materials/next')
+                alert('Congratulations! All answers are correct.')
+                router.push('print-order')
             }, 400)
         }
     }, [lines, router])
