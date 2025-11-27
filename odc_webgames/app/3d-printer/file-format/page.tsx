@@ -46,7 +46,7 @@ export default function FileTypePage() {
         <div style={styles.container}>
             <header style={styles.header}>
                 <h1 style={styles.title}>File Type</h1>
-                <p style={styles.subtitle}>Guess which file type is used to print a 3D model</p>
+                <p style={styles.subtitle}>Which file type is used to print a 3D model</p>
             </header>
 
             <section style={styles.optionsSection}>

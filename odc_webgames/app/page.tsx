@@ -128,7 +128,7 @@ export default function Page(): JSX.Element {
             </Button>
           </div>
           <div style={{ flex: 1 }}>
-            <Button label="3D Printer" onClick={() => { router.push('/3d-printer') }} style={{ background: '#fff3c2' }}>
+            <Button label="3D Printer" onClick={() => { router.push('/3d-printer/file-format') }} style={{ background: '#fff3c2' }}>
               <IconMath />
               <span style={{ fontSize: 16, color: '#111827' }}>3D Printer</span>
             </Button>

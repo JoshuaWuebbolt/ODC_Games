@@ -282,7 +282,7 @@ export default function Page() {
                             {materials.map((m) => (
                                 <div
                                     key={m.id}
-                                    ref={(el) => (materialRefs.current[m.id] = el)}
+                                    ref={(el) => { materialRefs.current[m.id] = el; }}
                                     onPointerDown={(e) => {
                                         if (matchedSources[m.id]) return
                                         e.preventDefault()
@@ -317,7 +317,7 @@ export default function Page() {
                             {uses.map((u) => (
                                 <div
                                     key={u.id}
-                                    ref={(el) => (useRefs.current[u.id] = el)}
+                                    ref={(el) => { useRefs.current[u.id] = el; }}
                                     data-use-id={u.id}
                                     onPointerDown={(e) => {
                                         if (activeSource) {
@@ -342,4 +342,4 @@ export default function Page() {
             </div>
         </div>
     )
- }
+}
