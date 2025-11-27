@@ -57,6 +57,8 @@ export default function Page() {
     const [matchedSources, setMatchedSources] = useState<Record<string, boolean>>({})
     const [matchedUses, setMatchedUses] = useState<Record<string, boolean>>({})
     const [tempPos, setTempPos] = useState<{ x: number; y: number } | null>(null) // for live drawing while cursor moves
+    // anchor point for the current drag (viewport/client coords). Read by render.
+    const [anchorPos, setAnchorPos] = useState<{ x: number; y: number } | null>(null)
 
     // return viewport (client) coordinates for element center so lines can be drawn anywhere on the page
     const getCenter = (el: HTMLElement | null) => {
@@ -73,7 +75,12 @@ export default function Page() {
         setActiveSource(id)
         const el = materialRefs.current[id]
         const c = getCenter(el)
-        if (c) setTempPos({ x: c.x, y: c.y })
+        if (c) {
+            setTempPos({ x: c.x, y: c.y })
+            setAnchorPos({ x: c.x, y: c.y })
+        } else {
+            setAnchorPos(null)
+        }
         // attach mousemove to update temp line end
     }
 
@@ -83,6 +90,7 @@ export default function Page() {
             // already matched, ignore
             setActiveSource(null)
             setTempPos(null)
+            setAnchorPos(null)
             return
         }
         const fromEl = materialRefs.current[activeSource]
@@ -92,6 +100,7 @@ export default function Page() {
         if (!cFrom || !cTo) {
             setActiveSource(null)
             setTempPos(null)
+            setAnchorPos(null)
             return
         }
         const correct = correctMap[activeSource] === useId
@@ -112,11 +121,13 @@ export default function Page() {
             setMatchedUses((m) => ({ ...m, [useId]: true }))
             setActiveSource(null)
             setTempPos(null)
+            setAnchorPos(null)
         } else {
             // show red briefly then remove
             setLines((s) => [...s, { ...newLine, correct: false }])
             setActiveSource(null)
             setTempPos(null)
+            setAnchorPos(null)
             setTimeout(() => {
                 setLines((s) => s.filter((l) => l.id !== id))
             }, 800)
@@ -152,6 +163,7 @@ export default function Page() {
                 // cancelled / not dropped on a use
                 setActiveSource(null)
                 setTempPos(null)
+                setAnchorPos(null)
             }
         }
 
@@ -254,8 +266,8 @@ export default function Page() {
                     ))}
                     {activeSource && tempPos && (
                         <line
-                            x1={getCenter(materialRefs.current[activeSource])?.x ?? tempPos.x}
-                            y1={getCenter(materialRefs.current[activeSource])?.y ?? tempPos.y}
+                            x1={anchorPos?.x ?? tempPos.x}
+                            y1={anchorPos?.y ?? tempPos.y}
                             x2={tempPos.x}
                             y2={tempPos.y}
                             stroke="#333"
@@ -292,9 +304,11 @@ export default function Page() {
                                         const center = getCenter(materialRefs.current[m.id])
                                         if (center) {
                                             setTempPos({ x: center.x, y: center.y })
+                                            setAnchorPos({ x: center.x, y: center.y }) // ensure line shows immediately
                                         } else {
                                             // fallback to client coordinates
                                             setTempPos({ x: e.clientX, y: e.clientY })
+                                            setAnchorPos({ x: e.clientX, y: e.clientY })
                                         }
                                         setActiveSource(m.id)
                                     }}

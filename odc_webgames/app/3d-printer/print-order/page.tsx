@@ -24,6 +24,7 @@ export default function Page() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
     const draggingIndex = useRef<number | null>(null);
+    const [draggingIndexState, setDraggingIndexState] = useState<number | null>(null);
     const ghostEl = useRef<HTMLDivElement | null>(null);
     const startY = useRef<number>(0);
     const pointerId = useRef<number | null>(null);
@@ -52,6 +53,7 @@ export default function Page() {
         e.preventDefault();
 
         draggingIndex.current = index;
+        setDraggingIndexState(index);
         startY.current = e.clientY;
 
         // create ghost element
@@ -114,6 +116,7 @@ export default function Page() {
             if (targetIndex !== idx) {
                 setItems((prev) => moveItem(prev, idx, targetIndex));
                 draggingIndex.current = targetIndex;
+                setDraggingIndexState(targetIndex);
                 startY.current = ev.clientY;
             }
         };
@@ -165,6 +168,7 @@ export default function Page() {
             setItems((prev) => moveItem(prev, idx, targetIndex));
             // update refs and dragging index
             draggingIndex.current = targetIndex;
+            setDraggingIndexState(targetIndex);
             startY.current = e.clientY; // reset baseline so ghost movement remains smooth
         }
     }
@@ -179,6 +183,7 @@ export default function Page() {
             if (el) el.style.opacity = "1";
         }
         draggingIndex.current = null;
+        setDraggingIndexState(null);
         pointerId.current = null;
         // remove global listeners if installed
         if (globalListeners.current.move) {
@@ -271,12 +276,12 @@ export default function Page() {
                     {items.map((text, i) => (
                         <div
                             key={text}
-                            ref={(el) => (itemRefs.current[i] = el)}
+                            ref={(el) => { itemRefs.current[i] = el; }}
                             onPointerDown={(e) => onPointerDown(e, i)}
                             onPointerUp={onPointerUp}
                             role="button"
                             tabIndex={0}
-                            aria-grabbed={draggingIndex.current === i}
+                            aria-grabbed={draggingIndexState === i}
                             style={{
                                 background: "#fff",
                                 padding: "16px",
