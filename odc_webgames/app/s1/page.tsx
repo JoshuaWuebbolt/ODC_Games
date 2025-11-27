@@ -242,7 +242,8 @@ export default function XToolS1Page(): JSX.Element {
                 justifyContent: "center",
                 // responsive padding
                 padding: "clamp(12px, 3vw, 32px)",
-                background: "linear-gradient(180deg,#fff 0%, #fff3c2 100%)",
+                background: "white",
+                border: "5px solid #d9f4cd  ",
                 color: "#e6eef8",
                 fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
             }}
@@ -366,7 +367,7 @@ export default function XToolS1Page(): JSX.Element {
                                     padding: "0.6rem 1rem",
                                     borderRadius: 8,
                                     border: "none",
-                                    background: "#ffbd59",
+                                    background: "#ffffffff",
                                     color: "#000000ff",
                                     cursor: "pointer",
                                     fontSize: "clamp(0.9rem, 2.2vw, 1rem)",
