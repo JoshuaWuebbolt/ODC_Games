@@ -70,7 +70,7 @@ export default function Page() {
         <main className="party">
             <div className="center" ref={centerRef}>
                 {/* attach ref to headline so we can measure it */}
-                <div className="main-3d" ref={mainRef}>CONGRADULATIONS</div>
+                <div className="main-3d" ref={mainRef}>CONGRATULATIONS</div>
                 <div className="subtitle">It is currently 4:21AM. I don't want to do this anymore.</div>
             </div>
 

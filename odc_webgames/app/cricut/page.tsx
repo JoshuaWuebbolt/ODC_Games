@@ -42,15 +42,15 @@ export default function CricutPage(): JSX.Element {
             { src: "/cricut-scissors.jpg", title: "Scissors", color: "#e0e0e0", pressed: 0, correct: 1 },
         ],
         [
-            { src: "/cricut-sticker-sheets.jfif", title: "Sticker Sheet", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut-glue.jfif", title: "Glue", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-sticker-sheets.jpg", title: "Sticker Sheet", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-glue.jpg", title: "Glue", color: "#e0e0e0", pressed: 0, correct: 0 },
             { src: "/cricut-weeding-tool.jpg", title: "Weeding Tool", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut-ruler.jfif", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-ruler.jpg", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
         ],
         [
-            { src: "/cricut-string.jfif", title: "String", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut-tape.jfif", title: "Tape", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut-ink.jfif", title: "Ink", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-string.jpg", title: "String", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-tape.jpg", title: "Tape", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-ink.jpg", title: "Ink", color: "#e0e0e0", pressed: 0, correct: 0 },
             { src: "/cricut-pinhook.jpg", title: "Pin Hook", color: "#e0e0e0", pressed: 0, correct: 1 },
         ],
     ];
