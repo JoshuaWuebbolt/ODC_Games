@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { JSX } from "react";
 
-// File: /d:/School/4th_year/CCT204/ODC_Games/odc_webgames/app/cricut/page.tsx
-
 const Button: React.FC<{ label: string; onClick: () => void; children: React.ReactNode; style?: React.CSSProperties }> = ({ label, onClick, children, style }) => (
   <button
     onClick={onClick}
@@ -35,26 +33,25 @@ const Button: React.FC<{ label: string; onClick: () => void; children: React.Rea
 export default function CricutPage(): JSX.Element {
     type Tile = { src: string; title: string; color: string; pressed: 0 | 1; correct: 0 | 1; result?: 'none' | 'correct' | 'wrong' };
 
+    // 3 rows × 4 columns
     const initialGrid: Tile[][] = [
         [
-            { src: "/cricut-scraper.webp", title: "Scraper", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut-tweezers.webp", title: "Tweezers", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut/tile-3.webp", title: "Screw Driver", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-scraper.jpg", title: "Scraper", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut-tweezers.jpg", title: "Tweezers", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut-screwdriver.jpg", title: "Screw Driver", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-scissors.jpg", title: "Scissors", color: "#e0e0e0", pressed: 0, correct: 1 },
         ],
         [
-            { src: "/cricut/tile-4.webp", title: "Scissors", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut/tile-5.webp", title: "Sticker Sheet", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-6.webp", title: "Glue", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-sticker-sheets.jfif", title: "Sticker Sheet", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-glue.jfif", title: "Glue", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-weeding-tool.jpg", title: "Weeding Tool", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut-ruler.jfif", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
         ],
         [
-            { src: "/cricut/tile-7.webp", title: "Weeding Tool", color: "#e0e0e0", pressed: 0, correct: 1 },
-            { src: "/cricut/tile-8.webp", title: "Ruler", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-9.webp", title: "String", color: "#e0e0e0", pressed: 0, correct: 0 },
-        ],
-        [
-            { src: "/cricut/tile-10.webp", title: "Tape", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-11.webp", title: "Ink", color: "#e0e0e0", pressed: 0, correct: 0 },
-            { src: "/cricut/tile-12.webp", title: "Pin Hook", color: "#e0e0e0", pressed: 0, correct: 1 },
+            { src: "/cricut-string.jfif", title: "String", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-tape.jfif", title: "Tape", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-ink.jfif", title: "Ink", color: "#e0e0e0", pressed: 0, correct: 0 },
+            { src: "/cricut-pinhook.jpg", title: "Pin Hook", color: "#e0e0e0", pressed: 0, correct: 1 },
         ],
     ];
 
@@ -137,8 +134,16 @@ export default function CricutPage(): JSX.Element {
 
             <div style={styles.headerText}>
 
-                <p style={{ marginTop: 8, color: "#333" }}>
-                    To win this game you must select all the tools hidden inside the side 
+                <style>
+                {`
+                    .cricut-header-text { color: #111827; }
+                    @media (prefers-color-scheme: dark) {
+                        .cricut-header-text { color: #e5e7eb; text-shadow: 0 1px 0 rgba(0,0,0,0.4); }
+                    }
+                `}
+                </style>
+                <p className="cricut-header-text" style={{ marginTop: 8 }}>
+                    To win this game you must select all the tools hidden inside the side
                     compartment of the Cricut machine. Once you've selected all the tools,
                     press the "Submit" button to see if you found them all!
                 </p>
@@ -146,7 +151,7 @@ export default function CricutPage(): JSX.Element {
             <section style={styles.gridWrap}>
                 {tileGrid.map((rowArr, row) =>
                     rowArr.map(({ src, title, color, pressed, correct, result }, col) => {
-                        const idx = row * 3 + col; // 0..11
+                        const idx = row * 4 + col; // updated for 4 columns
                         const seed = idx + 1;
                         const imageSrc = src ?? "/cricut-scraper.webp";
                         const label = title ?? `Design ${seed}`;
@@ -224,39 +229,40 @@ export default function CricutPage(): JSX.Element {
                                  style={{ ...styles.tile, ...(buttonBaseStyle ?? {}), background: bg, ...ringStyle }}
                                  aria-label={label}
                              >
-                                <div style={{ position: "relative", width: "100%", paddingBottom: "66.666%", borderRadius: 8, overflow: "hidden" }}>
+                                {/* keep same tile size (3:2) but show full image inside via contain */}
+                                <div style={{ position: "relative", width: "100%", paddingBottom: "100%", borderRadius: 8, overflow: "hidden", background: "#fafafa", display: "flex", alignItems: "center", justifyContent: "center" }}>
                                     <Image
                                         src={imageSrc}
                                         alt={label}
                                         fill
-                                        style={{ objectFit: "cover", opacity: 0.98 }}
+                                        style={{ objectFit: "contain", opacity: 0.98 }}
                                         priority={seed <= 3}
                                     />
-                                    {/* neutral base overlay inside image container (keeps contrast stable) */}
-                                    <div
-                                        aria-hidden
-                                        style={{
-                                            position: "absolute",
-                                            inset: 0,
-                                            pointerEvents: "none",
-                                            background: "transparent",
-                                            mixBlendMode: "normal",
-                                        }}
-                                    />
-                                    {/* show overlay (selection or result) */}
-                                    {overlayStyle && (
-                                        <div
-                                            aria-hidden
-                                            style={{
-                                                position: "absolute",
-                                                inset: 0,
-                                                pointerEvents: "none",
-                                                ...overlayStyle,
-                                                borderRadius: 8,
-                                            }}
-                                        />
-                                    )}
-                                </div>
+                                     {/* neutral base overlay inside image container (keeps contrast stable) */}
+                                     <div
+                                         aria-hidden
+                                         style={{
+                                             position: "absolute",
+                                             inset: 0,
+                                             pointerEvents: "none",
+                                             background: "transparent",
+                                             mixBlendMode: "normal",
+                                         }}
+                                     />
+                                     {/* show overlay (selection or result) */}
+                                     {overlayStyle && (
+                                         <div
+                                             aria-hidden
+                                             style={{
+                                                 position: "absolute",
+                                                 inset: 0,
+                                                 pointerEvents: "none",
+                                                 ...overlayStyle,
+                                                 borderRadius: 8,
+                                             }}
+                                         />
+                                     )}
+                                 </div>
                                
                                 <div
                                     style={{
@@ -294,6 +300,7 @@ const styles: Record<string, React.CSSProperties> = {
             "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
         maxWidth: 1100,
         margin: "0 auto",
+        border: "5px solid #c2cdff",
     },
     header: {
         display: "flex",
@@ -315,13 +322,13 @@ const styles: Record<string, React.CSSProperties> = {
     },
     gridWrap: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
+        gridTemplateColumns: "repeat(4, 1fr)", // 4 columns
         gap: 12,
     },
     tile: {
         position: "relative",
         padding: 0,
-        border: "none",
+        border: "2px solid #c2cdff",
         background: "transparent",
         cursor: "pointer",
         borderRadius: 8,
@@ -332,9 +339,9 @@ const styles: Record<string, React.CSSProperties> = {
     tileImage: {
         width: "100%",
         height: 0,
-        paddingBottom: "66.666%" // 3:2 aspect ratio
+        paddingBottom: "80%" // 3:2 aspect ratio (keeps tile size)
         ,
-        objectFit: "cover",
+        objectFit: "contain",
         display: "block",
     },
     tileOverlay: {
